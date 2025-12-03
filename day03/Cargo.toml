@@ -1,0 +1,11 @@
+[package]
+name = "day03"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "day03"
+path = "day03.rs"
+
+[dependencies]

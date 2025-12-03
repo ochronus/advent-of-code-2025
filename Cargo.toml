@@ -1,0 +1,11 @@
+[workspace]
+members = ["day01", "day02", "day03"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["ochronus"]
+
+[workspace.dependencies]
+# Common dependencies can be defined here and referenced by workspace members
