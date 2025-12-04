@@ -1,6 +1,6 @@
 use std::fs;
 
-const DIRECTIONS: [(i32, i32); 8] = [
+const DIRECTIONS: [(isize, isize); 8] = [
     (-1, 0),  // N
     (-1, 1),  // NE
     (0, 1),   // E
@@ -20,20 +20,20 @@ fn parse_grid(input: &str) -> Vec<Vec<char>> {
 }
 
 fn count_adjacent_rolls(grid: &[Vec<char>], row: usize, col: usize) -> usize {
-    let rows = grid.len() as i32;
-    let cols = grid[0].len() as i32;
+    let rows = grid.len();
+    let cols = grid[0].len();
 
     DIRECTIONS
         .iter()
-        .filter(|(dr, dc)| {
-            let new_row = row as i32 + dr;
-            let new_col = col as i32 + dc;
+        .filter(|&(dr, dc)| {
+            let Some(new_row) = row.checked_add_signed(*dr) else {
+                return false;
+            };
+            let Some(new_col) = col.checked_add_signed(*dc) else {
+                return false;
+            };
 
-            new_row >= 0
-                && new_row < rows
-                && new_col >= 0
-                && new_col < cols
-                && grid[new_row as usize][new_col as usize] == '@'
+            new_row < rows && new_col < cols && grid[new_row][new_col] == '@'
         })
         .count()
 }
@@ -63,7 +63,7 @@ fn solve_part2(grid: &[Vec<char>]) -> usize {
             break;
         }
 
-        for (row, col) in &accessible {
+        for (row, col) in accessible.iter() {
             grid[*row][*col] = '.';
         }
 
