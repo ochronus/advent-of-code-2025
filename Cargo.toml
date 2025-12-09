@@ -1,5 +1,15 @@
 [workspace]
-members = ["day01", "day02", "day03", "day04", "day05", "day06", "day07", "day08"]
+members = [
+    "day01",
+    "day02",
+    "day03",
+    "day04",
+    "day05",
+    "day06",
+    "day07",
+    "day08",
+    "day09",
+]
 resolver = "2"
 
 [workspace.package]
@@ -9,3 +19,8 @@ authors = ["ochronus"]
 
 [workspace.dependencies]
 # Common dependencies can be defined here and referenced by workspace members
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
