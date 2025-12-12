@@ -17,7 +17,6 @@ release/
 .DS_Store
 
 # Input files (Advent of Code)
-**/input.txt
 **/input_test.txt
 
 # Backup files
